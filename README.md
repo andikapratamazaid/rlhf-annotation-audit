@@ -29,7 +29,7 @@ helpfulness tranches (`helpful-base`, `helpful-online`,
    "always pick the longer response" rule reproduces annotator choices with
    **59.1% accuracy**. In `harmless-base` the pattern inverts: chosen
    responses are longer in only **41.2%** of pairs and the same rule scores
-   **42.2% — below chance**. A reward model trained on this data learns
+   **42.2% - below chance**. A reward model trained on this data learns
    "be verbose" from helpfulness and "be brief" from harmlessness, whether
    or not anyone intended that.
 2. **Flagged content survives in chosen harmlessness responses.** Using the
@@ -38,7 +38,7 @@ helpfulness tranches (`helpful-base`, `helpful-online`,
    flagged term, versus 7.58% of rejected ones. Annotators reduced flagged
    content; they did not eliminate it. In the helpfulness tranches the
    chosen responses are flagged slightly *more* often than the rejected
-   ones (e.g. 0.76% vs 0.58% in `helpful-base`) — nobody was screening for
+   ones (e.g. 0.76% vs 0.58% in `helpful-base`) - nobody was screening for
    it there.
 3. **Hundreds of pairs carry no signal at all.** The corpus contains **776
    identical pairs** (chosen and rejected responses textually identical),
@@ -46,7 +46,7 @@ helpfulness tranches (`helpful-base`, `helpful-online`,
    plus 134 near-identical pairs and thousands of pairs where one side is a
    ≤2-word stub.
 4. **The labels are learnable, but only modestly.** A transparent logistic
-   preference model (engineered features + TF-IDF) reaches **56.6–64.7%
+   preference model (engineered features + TF-IDF) reaches **56.6-64.7%
    held-out accuracy** per split - always above the length-only rule, far
    from the ceiling. The gap is where annotator subjectivity and label
    noise live.
