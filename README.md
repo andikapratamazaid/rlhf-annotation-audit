@@ -1,8 +1,8 @@
-# RLHF Preference Data — Annotation Quality Audit
+# RLHF Preference Data - Annotation Quality Audit
 
 > **Content warning.** This project audits the Anthropic HH-RLHF dataset,
 > whose harmlessness split contains offensive language, slurs and harmful
-> requests **by design** — that is what makes it useful for safety training,
+> requests **by design** - that is what makes it useful for safety training,
 > and it is also where annotation quality matters most. The user who
 > commissioned this portfolio project explicitly approved covering the
 > harmlessness split in full. This README reports the audit statistically,
@@ -18,7 +18,7 @@
 An AI startup (simulated) is about to train a reward model on **169,352
 human preference pairs** from the public Anthropic HH-RLHF corpus and asked
 a simple question first: *what do our labels actually say?* This audit
-answers that question across the corpus's four published splits — three
+answers that question across the corpus's four published splits - three
 helpfulness tranches (`helpful-base`, `helpful-online`,
 `helpful-rejection-sampled`) and one harmlessness tranche (`harmless-base`).
 
@@ -47,12 +47,12 @@ helpfulness tranches (`helpful-base`, `helpful-online`,
    ≤2-word stub.
 4. **The labels are learnable, but only modestly.** A transparent logistic
    preference model (engineered features + TF-IDF) reaches **56.6–64.7%
-   held-out accuracy** per split — always above the length-only rule, far
+   held-out accuracy** per split - always above the length-only rule, far
    from the ceiling. The gap is where annotator subjectivity and label
    noise live.
 5. **A 200-pair adjudicated gold set** (50 per split) was built with an
    explicit error taxonomy. Single-analyst adjudication agreed with the
-   original labels on **96.9% of decisive pairs** — a rule-based audit only
+   original labels on **96.9% of decisive pairs** - a rule-based audit only
    overturns labels on strong signals, so this is *not* comparable to
    inter-annotator agreement (which cannot be computed here at all: the
    public release has no annotator IDs).
