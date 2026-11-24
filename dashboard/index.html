@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RLHF Preference Data — Annotation QA Audit</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; margin: 0; background: #f8fafc; color: #0f172a; }
+  main { max-width: 1060px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  h2 { font-size: 20px; margin-top: 36px; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; }
+  .sub { color: #475569; margin-top: 0; }
+  .warn { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 10px 14px; font-size: 14px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 20px 0; }
+  .card { background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; }
+  .card .big { font-size: 26px; font-weight: 700; }
+  .card .lbl { color: #475569; font-size: 13px; }
+  table { border-collapse: collapse; width: 100%; background: white; font-size: 14px; }
+  th, td { border: 1px solid #e2e8f0; padding: 7px 10px; text-align: left; }
+  th { background: #f1f5f9; }
+  img { max-width: 100%; background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px; }
+  li { margin-bottom: 6px; }
+  footer { color: #64748b; font-size: 13px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>RLHF Preference Data — Annotation QA Audit</h1>
+  <p class="sub">Simulated freelance engagement for an AI startup training an LLM assistant
+  (disclosed simulation, portfolio project). Dataset: Anthropic HH-RLHF, MIT license.</p>
+  <p class="warn"><strong>Content warning:</strong> the audited harmlessness data contains
+  offensive language and harmful requests by design. This dashboard reports statistics only
+  and quotes no harmful examples.</p>
+
+  <div class="cards">
+    <div class="card"><div class="big">169,352</div><div class="lbl">preference pairs audited across 4 splits</div></div>
+    <div class="card"><div class="big">41.2%</div><div class="lbl">of harmlessness pairs chose the longer response — annotators preferred shorter, safer answers there</div></div>
+    <div class="card"><div class="big">4.44%</div><div class="lbl">of chosen harmlessness responses still contain lexicon-flagged terms (rejected: 7.58%)</div></div>
+    <div class="card"><div class="big">776</div><div class="lbl">identical chosen/rejected pairs in the corpus — pure label noise</div></div>
+    <div class="card"><div class="big">64.7%</div><div class="lbl">best held-out reward-model accuracy (harmless-base); mean across splits 61.1%</div></div>
+    <div class="card"><div class="big">96.9%</div><div class="lbl">audit-sample agreement between original labels and single-analyst adjudication (decisive gold pairs)</div></div>
+  </div>
+
+  <h2>Length bias</h2>
+  <table><thead><tr><th>split</th><th>pairs</th><th>pct_chosen_longer</th><th>mean_len_diff_words</th><th>length_only_baseline_accuracy_pct</th></tr></thead><tbody><tr><td>helpful-base</td><td>46189</td><td>57.96%</td><td>+9.8</td><td>59.07%</td></tr><tr><td>helpful-online</td><td>23144</td><td>44.72%</td><td>-3.5</td><td>45.52%</td></tr><tr><td>helpful-rejection-sampled</td><td>55170</td><td>55.48%</td><td>+8.9</td><td>57.10%</td></tr><tr><td>harmless-base</td><td>44849</td><td>41.17%</td><td>-8.3</td><td>42.16%</td></tr></tbody></table>
+  <div class="grid">
+    <img src="../charts/chosen_longer_by_split.png" alt="Chosen-longer rate by split">
+    <img src="../charts/length_diff_distribution.png" alt="Length difference distribution">
+  </div>
+
+  <h2>Label leakage (lexicon proxy)</h2>
+  <table><thead><tr><th>split</th><th>chosen_flagged_pct</th><th>rejected_flagged_pct</th></tr></thead><tbody><tr><td>helpful-base</td><td>0.76%</td><td>0.58%</td></tr><tr><td>helpful-online</td><td>1.79%</td><td>2.19%</td></tr><tr><td>helpful-rejection-sampled</td><td>0.94%</td><td>0.81%</td></tr><tr><td>harmless-base</td><td>4.44%</td><td>7.58%</td></tr></tbody></table>
+  <div class="grid">
+    <img src="../charts/flagged_rate_chosen_vs_rejected.png" alt="Flagged rate chosen vs rejected">
+    <img src="../charts/flagged_by_category_harmless.png" alt="Flagged rate by category, harmlessness">
+  </div>
+
+  <h2>Reward model (held-out test accuracy)</h2>
+  <table><thead><tr><th>split</th><th>test_pairs</th><th>model_full_accuracy_pct</th><th>model_engineered_accuracy_pct</th><th>length_only_accuracy_pct</th></tr></thead><tbody><tr><td>helpful-base</td><td>2354</td><td>63.42%</td><td>61.53%</td><td>60.07%</td></tr><tr><td>helpful-online</td><td>1137</td><td>56.55%</td><td>54.27%</td><td>43.98%</td></tr><tr><td>helpful-rejection-sampled</td><td>2749</td><td>59.88%</td><td>58.28%</td><td>56.60%</td></tr><tr><td>harmless-base</td><td>2312</td><td>64.66%</td><td>59.13%</td><td>43.92%</td></tr></tbody></table>
+  <img src="../charts/model_accuracy_by_split.png" alt="Model accuracy by split">
+
+  <h2>Gold set and error taxonomy</h2>
+  <table><thead><tr><th>error_category</th><th>pairs</th><th>pct_of_gold_set</th></tr></thead><tbody><tr><td>none</td><td>184</td><td>92.0%</td></tr><tr><td>ambiguous_pair</td><td>3</td><td>1.5%</td></tr><tr><td>length_bias_suspect</td><td>3</td><td>1.5%</td></tr><tr><td>identical_pair</td><td>3</td><td>1.5%</td></tr><tr><td>refusal_over_helpful</td><td>3</td><td>1.5%</td></tr><tr><td>under_answer_chosen</td><td>2</td><td>1.0%</td></tr><tr><td>harmful_content_in_chosen</td><td>1</td><td>0.5%</td></tr><tr><td>near_identical_pair</td><td>1</td><td>0.5%</td></tr></tbody></table>
+  <img src="../charts/taxonomy_counts.png" alt="Error taxonomy counts">
+
+  <h2>Recommendations for the annotation operation</h2>
+  <ul>
+    <li><strong>Rewrite the guideline around length.</strong> Annotators reward length in
+    helpfulness data (up to ~58% longer-chosen) and punish it in harmlessness data; the
+    guideline must state explicitly that length follows the request, never the reverse.</li>
+    <li><strong>Filter identical and near-identical pairs before training.</strong>
+    They carry no preference signal and dilute the reward model's gradient.</li>
+    <li><strong>Add a harmlessness second pass.</strong> A measurable share of chosen
+    harmlessness responses still carries flagged terms; a lexicon pre-screen plus human
+    review of flagged chosen responses is cheap and targeted.</li>
+    <li><strong>Calibrate with the gold set.</strong> New annotators label the 200-pair
+    gold set first; disagreements are reviewed against the guideline before production work.</li>
+    <li><strong>Track agreement properly.</strong> The public corpus has no annotator IDs,
+    so inter-annotator agreement is unknowable for it; the client's own pipeline should
+    double-label a rotating 5% sample and store annotator IDs from day one.</li>
+  </ul>
+
+  <footer>Generated by scripts/07_dashboard.py from data/results/. Simulated engagement —
+  see CLIENT_BRIEF.md for the disclosure. Lexicon flags are a surface proxy, not ground
+  truth about harm. Gold-set labels are single-analyst adjudications.</footer>
+</main>
+</body>
+</html>
