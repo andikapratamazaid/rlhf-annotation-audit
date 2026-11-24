@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.pytest_cache/
+# Raw HH-RLHF downloads and intermediate per-pair tables are recreated by
+# scripts/01_download.py and steps 02-03; they are not shipped in the repo.
+data/raw/
+data/processed/
