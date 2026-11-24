@@ -1,0 +1,24 @@
+{
+  "dataset": "Anthropic HH-RLHF (MIT license), official GitHub release",
+  "total_pairs": 169352,
+  "pairs_per_split": {
+    "helpful-base": 46189,
+    "helpful-online": 23144,
+    "helpful-rejection-sampled": 55170,
+    "harmless-base": 44849
+  },
+  "gold_set_pairs": 200,
+  "audit_agreement_decisive_pct": 96.94,
+  "audit_invalid_pairs": 4,
+  "model_mean_test_accuracy_pct": 61.13,
+  "transformer_reward_model": {
+    "status": "not_run",
+    "reason": "Environment provides ~1.5 shared CPUs and 6 GB RAM; installing a transformer stack (~2 GB) and fine-tuning on tens of thousands of pairs would take many hours. The guaranteed deliverable (logistic preference model on engineered + TF-IDF features) was run instead; no transformer number is reported or implied."
+  },
+  "limitations": [
+    "No annotator IDs in the public release: true inter-annotator agreement cannot be computed.",
+    "Gold-set labels are single-analyst adjudications operationalised through documented rules, not independent human re-annotation.",
+    "The lexicon is a surface proxy for harmful content, not ground truth about harm.",
+    "Word counts use whitespace tokenisation, not a model tokenizer."
+  ]
+}

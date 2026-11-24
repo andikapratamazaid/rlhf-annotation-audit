@@ -1,0 +1,9 @@
+error_category,pairs,pct_of_gold_set
+none,184,92.0
+ambiguous_pair,3,1.5
+length_bias_suspect,3,1.5
+identical_pair,3,1.5
+refusal_over_helpful,3,1.5
+under_answer_chosen,2,1.0
+harmful_content_in_chosen,1,0.5
+near_identical_pair,1,0.5
