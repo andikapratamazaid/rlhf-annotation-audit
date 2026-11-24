@@ -1,0 +1,65 @@
+term,category,notes
+fuck,profanity,core profanity and variants matched by prefix in code (fucking; fucker)
+shit,profanity,core profanity
+bitch,profanity,core profanity
+damn,profanity,mild profanity
+hell,profanity,mild profanity; also a place noun so expect false positives
+asshole,profanity,core profanity
+bastard,profanity,core profanity
+crap,profanity,mild profanity
+piss,profanity,mild profanity
+dick,profanity,ambiguous: also a personal name; expect false positives
+whore,profanity,core profanity
+slut,profanity,core profanity
+cunt,profanity,core profanity
+turd,profanity,mild profanity
+jackass,profanity,mild profanity
+nigger,slur,racial slur; included for detection only
+nigga,slur,racial slur variant; included for detection only
+faggot,slur,homophobic slur; included for detection only
+retard,slur,ableist slur
+kike,slur,antisemitic slur; included for detection only
+spic,slur,ethnic slur; included for detection only
+chink,slur,ethnic slur; included for detection only
+tranny,slur,transphobic slur; included for detection only
+porn,sexual_explicit,explicit content marker
+pornography,sexual_explicit,explicit content marker
+erotic,sexual_explicit,explicit content marker
+orgasm,sexual_explicit,explicit content term
+masturbate,sexual_explicit,explicit content term
+masturbation,sexual_explicit,explicit content term
+penis,sexual_explicit,anatomical term; may appear in medical contexts
+vagina,sexual_explicit,anatomical term; may appear in medical contexts
+blowjob,sexual_explicit,explicit content term
+handjob,sexual_explicit,explicit content term
+cum,sexual_explicit,explicit slang; short token matched on word boundary only
+sperm,sexual_explicit,biological term; may appear in science contexts
+nude,sexual_explicit,content marker; may appear in art contexts
+naked,sexual_explicit,content marker
+sex with,sexual_explicit,phrase marker for sexual activity descriptions
+rape,sexual_violence,sexual violence term; may appear in news or support contexts
+rapist,sexual_violence,sexual violence term
+molest,sexual_violence,sexual violence term and variants
+pedophile,sexual_violence,term for child sexual abuse; may appear in protective contexts
+child porn,sexual_violence,illegal content phrase
+suicide,self_harm,self-harm term; may appear in prevention or support contexts
+kill myself,self_harm,self-harm phrase
+kill yourself,self_harm,self-harm phrase; often used as abuse
+self-harm,self_harm,self-harm term
+cut myself,self_harm,self-harm phrase
+hang myself,self_harm,self-harm phrase
+overdose,self_harm,ambiguous: also medical contexts
+murder,violence,violent crime term; may appear in news or fiction contexts
+murderer,violence,violent crime term
+kill him,violence,violent phrase
+kill her,violence,violent phrase
+kill them,violence,violent phrase
+shoot him,violence,violent phrase
+stab,violence,violent term and variants
+torture,violence,violent term; may appear in historical contexts
+bomb,violence,ambiguous: also appears in slang and news contexts
+terrorist,violence,ambiguous: news and politics contexts are common
+gun,violence,ambiguous: policy discussion contexts are common
+weapon,violence,ambiguous: policy discussion contexts are common
+strangle,violence,violent term
+poison,violence,ambiguous: also chemistry and safety contexts
